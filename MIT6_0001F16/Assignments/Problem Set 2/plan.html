@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+<title> Assignment 2 Plan</title>
+<style>
+body {
+  background-color: rgb(175,200,175);
+}
+</style>
+</head>
+<body>
+	<h1> Functions Required </h1>
+	<ul> <li> <b> User Input </b> User provide us with a letter and we must validate its a letter, if not they need to provide again. 
+         </li>
+	     <li> <b> get_guessed_word </b> Tell the player if the letter guessed is in the word, reveal the letters guessed so far.
+	     </li>
+		 <li> <b> is_word_guess </b> Tell the player if the word has been guessed
+	     </li>
+	     <li> <b> get_available_letters </b> Show to the player the remaining letters that not used (they can select one.)
+	     </li>	
+	     <li>
+	     	<b> valid guess</b> Tell the user if they have guessed not valid character or if they have already guessed the letter.
+	     </li>
+	</ul>
+	<h1> Variables </h1>
+    <ul> <li> <b> letters guessed  </b> - letters guessed so far, important check if word has been guessed, also tell user what have done so far.
+    	 </li>
+         <li>
+         	<b> number of guesses </b>
+         </li>	
+         <li> <b> number of warnings </b>
+         </li>
+         <li>
+         	<b> secret word</b>
+         </li>
+    </ul>
+    <h1> Game Structure - Initialisation/Iteration</h1>
+    
+ 	<h2> Initialisation</h2>
+    <ol>
+    	<li>
+    		Select the word
+    	</li>
+    	<li>
+    		Initialise the variables
+    	  <ul>
+           <li>
+   				number of guesses
+           </li>
+           <li>
+           		number of warnings
+           </li>
+           <li>
+           		letters guessed
+           </li>
+           <li>
+           		available letters
+           </li>
+           </ul>
+		</li>
+    	
+
+	</ol>
+	<h2>Iteration/Loops</h2>
+	<ol>
+    	<li>
+    		  Before each guess tell the user
+    	  <ul>
+    	   <li>
+    	   	  If its the first guess, welcome the user and tell them how long the word is.
+    	   </li>
+           <li>
+           		Available letters
+           </li>
+           <li>
+           		Number of guesses remaining
+           </li>
+           </ul>
+    	</li>
+    	<li>
+    		Ask user to guess a letter
+    	</li>
+    	<li>
+    		Check if guess valid 
+    	</li>
+    	<li>
+    		<b> Invalid guess</b> 
+    		<ol>
+    			<li>
+    				<b>Update</b> either the warnings or guesses.
+    			</li>
+    			<li>
+    				Provide a message to if a warning lost and also what mistake was made.
+    			</li>
+    			<li>
+    				Show the guessed word
+    			</li>
+    			<li>
+    				Print some dashes to seperate the guesses.
+    			</li>
+    			<li>
+    				Go back to Step 1 (Show available letters and number guesses remaining)
+    			</li>
+    		</ol>	
+    	</li>	
+    	    	<li>
+    		<b> Valid guess</b> 
+    		<ol>
+    			<li>
+    				<b>Update letters guessed</b> 
+    			</li>
+    			<li>
+    				<b>Game termination, word guessed</b> Determine if the user has guessed the word. If so congratulate the user, reveal the word and the score.
+    			</li>
+    			<li>
+    				<b>Word not guessed</b> 
+    				<ul>
+    					<li>
+    						<b> Update</b> word guess, available letters and guesses remaining 
+    					</li>
+    					<li>
+    						Determine if the letter guessed was in the secret word.
+    					</li>
+    					<li>
+    						Provide a message if good guess or not
+    					</li>
+    					<li>
+    						Show the guessed word.
+    					</li>
+    					<li>
+    						Print some dashes to seperate the guesses.
+    					</li>
+    					<li>
+    						Go back to step 1.
+    					</li>
+    				</ul>
+    			</li>
+    		</ol>	
+    	</li>	
+    </ol>
+
+
+<h1> De-bugging</h1>
+<input type="checkbox" value="chB1" /> Checkbox 1<br />
+<input type="checkbox" value="chB2" /> Checkbox 2<br />
+<input type="checkbox" value="chB3" /> Checkbox 3<br />
+<input type="checkbox" value="chB4" /> Checkbox 4<br />
+<input type="checkbox" value="chB5" /> Checkbox 5<br /> 
+<button onclick="save()">SAVE</button>
+
+<button onclick="load_()">LOAD</button>     
+
+
+</body>	
+</html>	
