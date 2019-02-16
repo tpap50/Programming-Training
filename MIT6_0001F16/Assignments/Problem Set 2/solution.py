@@ -143,12 +143,17 @@ def hangman(secret_word):
     print("Welcome to the game Hangman!") 
     length = len(secret_word)   
     print("I'm thinking of a word that is", length, "letters long") 
-    #initialise some variables   
+    ##########################
+    #initialise some variables 
     number_guesses = 6
     number_warnings=3
     letters_guessed =''
-    word_guess = get_guessed_word(secret_word, letters_guessed) 
+    word_guess = get_guessed_word(secret_word, letters_guessed)   
+    available_letters = get_available_letters(letters_guessed)
+   
     while number_guesses>0:
+       ################### 
+       #Before each guess 
        print("You have",number_warnings,"warnings remaining") 
        #after each guess need update warnings, guesses, letters guessed and word guess
        print("-----------------")        
@@ -156,21 +161,23 @@ def hangman(secret_word):
        #show the available letters to user      
        available_letters = get_available_letters(letters_guessed)
        print("Available letters", available_letters)
+       ##ask user to guess
        guess = input("Please guess a letter: ")
        c=guess.isalpha()
-       #check if guess valid     
+       #######################
+       #check if guess valid  
        while c ==False or guess in letters_guessed: 
-       #if not valid get a valid guess    
+       #if not valid get a valid guess     
            a=valid_input(letters_guessed, word_guess, guess, number_guesses, number_warnings)       
            number_guesses=a[0]
            guess=a[1]
            number_warnings=a[2]
            c=guess.isalpha() 
-       #update the letters guessed      
-       letters_guessed = letters_guessed + guess
-       #update the computers word with letters guessed correctly     
+       #######################
+       #updates        
+       letters_guessed = letters_guessed + guess   
        word_guess = get_guessed_word(secret_word, letters_guessed)   
-       #display to user if guess was good or not and also the computers word      
+       #Display to user whether guess in secret word       
        if guess in secret_word:
            print("Good guess", word_guess)
        elif guess in ("a","e","i","o","u"):
@@ -179,17 +186,21 @@ def hangman(secret_word):
        else:   
            print("Bad guess", word_guess)
            number_guesses = number_guesses -1
-       end = is_word_guessed(secret_word, letters_guessed)
+       ################################
        #check if player has won the game
+       end = is_word_guessed(secret_word, letters_guessed)
        if end == True:
+       #user won calculate winning score 
            unique = list(set(secret_word))
            unique_l = (len(unique))
            score = number_guesses*unique_l
            print("Congratulations, you won!. The word was", secret_word)
            print("Your score was", score)          
            break   
-    if end == False:   
-       print("Sorry you lost, the word was", secret_word)                     
+    #if run out of guesses tell user they lost and reveal word.       
+    print("Sorry you lost, the word was", secret_word)                     
+
+#######################################################
 # Load the list of words into the variable wordlist
 # so that it can be accessed from anywhere in the program
 wordlist = load_words()
