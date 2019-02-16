@@ -102,9 +102,34 @@ def get_available_letters(letters_guessed):
 #letters_guessed = ['e', 'i', 'k', 'p', 'r', 's']
 #print (get_available_letters(letters_guessed))
  
-   
+
+
  
+def valid_input(letters_guessed, word_guess, guess, number_guesses, number_warnings):
+    '''
+    user has input an invalid guess, gu\
+    inputs: letters guessed, word guess, guess, number of warnings, number or guesses
+    returns a guess, number of warnings and number of guesses.
+    '''        
+    if guess in letters_guessed:
+       number_warnings=number_warnings-1          
+       print("You have already guessed that letter before. You have",
+       number_warnings, "warnings left:",word_guess)
+       #lose a warning          
+    else:
+       number_warnings=number_warnings-1          
+       print("Oops you lost a warning guess not in the alphabet. You have",
+       number_warnings, "waring left.", word_guess)
+    print("-----------------")          
+    #print("You have",number_warnings,"warnings remaining")
+    print("You have",number_guesses,"guesses remaining")
+    #show the available letters to user      
+    available_letters = get_available_letters(letters_guessed)
+    print("Available letters", available_letters)          
+    guess = input("Please guess a letter: ")    
+    return(number_guesses, guess, number_warnings)
  
+    
 def hangman(secret_word):
     '''
     secret_word: string, the secret word to guess.
@@ -121,43 +146,25 @@ def hangman(secret_word):
     #initialise some variables   
     number_guesses = 6
     number_warnings=3
-    print("You have",number_warnings,"warnings remaining")
     letters_guessed =''
-    word_guess = get_guessed_word(secret_word, letters_guessed)  
+    word_guess = get_guessed_word(secret_word, letters_guessed) 
     while number_guesses>0:
-       #after each guess need update warnings, guesses and letters guessed.
+       print("You have",number_warnings,"warnings remaining") 
+       #after each guess need update warnings, guesses, letters guessed and word guess
        print("-----------------")        
-     #  print("You have",number_warnings,"warnings remaining")
        print("You have",number_guesses,"guesses remaining")
        #show the available letters to user      
        available_letters = get_available_letters(letters_guessed)
        print("Available letters", available_letters)
        guess = input("Please guess a letter: ")
        c=guess.isalpha()
-       #get a valid guess     
-       while c ==False or guess in letters_guessed:  
-           #dont have a warning so lose a guess          
-           if number_warnings<=0:
-              number_guesses = number_guesses -1
-              print("Sorry you had no warnings left so you lose a guess")
-              print(word_guess)
-           #guess already in letters guessed.
-           elif guess in letters_guessed:
-               number_warnings=number_warnings-1          
-               print("You have already guessed that letter before. You have",
-               number_warnings, "warnings left:",word_guess)
-           #lose a warning          
-           else:
-               number_warnings=number_warnings-1          
-               print("Oops you lost a warning guess not in the alphabet. You have",
-                     number_warnings, "waring left.", word_guess)
-           print("-----------------")          
-           #print("You have",number_warnings,"warnings remaining")
-           print("You have",number_guesses,"guesses remaining")
-           #show the available letters to user      
-           available_letters = get_available_letters(letters_guessed)
-           print("Available letters", available_letters)          
-           guess = input("Please guess a letter: ")
+       #check if guess valid     
+       while c ==False or guess in letters_guessed: 
+       #if not valid get a valid guess    
+           a=valid_input(letters_guessed, word_guess, guess, number_guesses, number_warnings)       
+           number_guesses=a[0]
+           guess=a[1]
+           number_warnings=a[2]
            c=guess.isalpha() 
        #update the letters guessed      
        letters_guessed = letters_guessed + guess
@@ -188,7 +195,7 @@ def hangman(secret_word):
 wordlist = load_words()
  
 #select the word
-secret_word = "else"
+secret_word = "marina"
 #choose_word(wordlist)
 #secret_word = "car"
 #play hangman
