@@ -105,21 +105,31 @@ def get_available_letters(letters_guessed):
 
 
  
-def valid_input(letters_guessed, word_guess, guess, number_guesses, number_warnings):
+def valid_input(letters_guessed, word_guess, guess, number_guesses, number_warnings, c):
     '''
     user has input an invalid guess, gu\
     inputs: letters guessed, word guess, guess, number of warnings, number or guesses
     returns a guess, number of warnings and number of guesses.
-    '''        
-    if guess in letters_guessed:
-       number_warnings=number_warnings-1          
-       print("You have already guessed that letter before. You have",
-       number_warnings, "warnings left:",word_guess)
-       #lose a warning          
-    else:
+    '''
+    #input letter already guessed and lose warning
+    #------------------------------        
+    if guess in letters_guessed and number_warnings>0:
+      number_warnings=number_warnings-1          
+      print("You have already guessed that letter before. You have",
+      number_warnings, "warnings left:",word_guess)
+      #lose a warning          
+    #input letter already guessed and no warnings left so lose a guess
+    elif guess in letters_guessed and number_warnings=0:
+      number_guesses = number_guesses - 1
+      print("You have already guessed that letter before. You have didnt have any warnings left so you lose a guess")
+    #guess not in the alphabet and have a warning left  
+    elif c is == False and number_warnings>0:
        number_warnings=number_warnings-1          
        print("Oops you lost a warning guess not in the alphabet. You have",
        number_warnings, "waring left.", word_guess)
+    elif c is == False and number_warnings=0:
+      number_guesses = number_guesses - 1
+      print("Oops you lost a warning guess not in the alphabet. You have didnt have any warnings left so you lose a guess")
     print("-----------------")          
     #print("You have",number_warnings,"warnings remaining")
     print("You have",number_guesses,"guesses remaining")
@@ -168,7 +178,7 @@ def hangman(secret_word):
        #check if guess valid  
        while c ==False or guess in letters_guessed: 
        #if not valid get a valid guess     
-           a=valid_input(letters_guessed, word_guess, guess, number_guesses, number_warnings)       
+           a=valid_input(letters_guessed, word_guess, guess, number_guesses, number_warnings, c)       
            number_guesses=a[0]
            guess=a[1]
            number_warnings=a[2]
@@ -203,14 +213,14 @@ def hangman(secret_word):
 #######################################################
 # Load the list of words into the variable wordlist
 # so that it can be accessed from anywhere in the program
-wordlist = load_words()
+#wordlist = load_words()
  
 #select the word
-secret_word = "marina"
+#secret_word = "marina"
 #choose_word(wordlist)
 #secret_word = "car"
 #play hangman
-hangman(secret_word) 
+#hangman(secret_word) 
  
  
  
