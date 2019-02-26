@@ -1,57 +1,27 @@
-def is_word_guessed(secret_word, letters_guessed):
-    '''
-    secret_word: string, the word the user is guessing; assumes all letters are
-      lowercase
-    letters_guessed: list (of letters), which letters have been guessed so far;
-      assumes that all letters are lowercase
-    returns: boolean, True if all the letters of secret_word are in letters_guessed;
-      False otherwise
-    '''
-    my_String = True   
-    for i in secret_word:
-        if i not in letters_guessed:
-            my_String = False
-    return(my_String)
+import sys
+sys.path.append("/Users/tompapas/Documents/Programming/Programming-Training/MIT6_0001F16/Assignments/Problem Set 2")
+import solution
 
-#########
-#Testing
-#########
+'''
+def get_guessed_word(secret_word, letters_guessed):
 
-#scenario 1 the list is empty
-secret_word="marina"
-letters_guessed=[]
-result=is_word_guessed(secret_word, letters_guessed)
-if result == False:
-  print("scenario1 test success")
-else:
-  print("scenario1 test fail")  
+    secret_word: string, the word the user is guessing
+    letters_guessed: list (of letters), which letters have been guessed so far
+    returns: string, comprised of letters, underscores (_), and spaces that represents
+      which letters in secret_word have been guessed so far.
 
+    my_String = ''
+    for x in secret_word:
+         if x in letters_guessed:
+              my_String += x
+         else:
+              my_String += '_ '
+    return my_String
 
-#scenario 2 list has some elements but not all letters in the word
+print(get_guessed_word("marina",[]))    
+'''
 
-secret_word="marina"
-letters_guessed=["a","b","c"]
-result=is_word_guessed(secret_word, letters_guessed)
-if result == False:
-  print("scenario2 test success")
-else:
-  print("scenario2 test fail")  
-
-#scenario 3 list has all the letters in the word 
-secret_word="marina"
-letters_guessed=["a","r","i","m", "n"]
-result=is_word_guessed(secret_word, letters_guessed)
-if result == True:
-  print("scenario3 test success")
-else:
-  print("scenario3 test fail")  
-
-#scenario 4 list has all the letters in the word but some are capital letters
-secret_word="marina"
-letters_guessed=["a","r","i","m", "N"]
-result=is_word_guessed(secret_word, letters_guessed)
-if result == False:
-  print("scenario4 test success")
-else:
-  print("scenario4 test fail")  
-
+print(solution.get_guessed_word("marina",["m","A"]))
+k = solution.get_available_letters(['m','a','r','i','n','1'])
+print(k)
+print(solution.valid_input('m', "m_ _ _ _ _ ", "5", 3, 0 ))  

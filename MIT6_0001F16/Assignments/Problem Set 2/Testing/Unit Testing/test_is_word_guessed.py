@@ -1,57 +1,33 @@
-def is_word_guessed(secret_word, letters_guessed):
-    '''
-    secret_word: string, the word the user is guessing; assumes all letters are
-      lowercase
-    letters_guessed: list (of letters), which letters have been guessed so far;
-      assumes that all letters are lowercase
-    returns: boolean, True if all the letters of secret_word are in letters_guessed;
-      False otherwise
-    '''
-    my_String = True   
-    for i in secret_word:
-        if i not in letters_guessed:
-            my_String = False
-    return(my_String)
+import unittest
+import sys
+sys.path.append("/Users/tompapas/Documents/Programming/Programming-Training/MIT6_0001F16/Assignments/Problem Set 2")
+import solution
 
-#########
-#Testing
-#########
+class test_solution(unittest.TestCase):
+  """docstring for ClassName"""
+  def test_iswordguessed(self):
+    self.assertEqual(solution.is_word_guessed("marina",[]), False)
+    self.assertEqual(solution.is_word_guessed("marina",["a","b","c"]), False)
+    self.assertEqual(solution.is_word_guessed("marina",["a","r","i","m", "n"]), True)
+    self.assertEqual(solution.is_word_guessed("marina",["a","r","i","m", "N"]), False)
+  def test_getguessword(self):
+    self.assertEqual(solution.get_guessed_word("marina",[]), "_ _ _ _ _ _ ")
+    self.assertEqual(solution.get_guessed_word("marina",["m","a"]), "ma_ _ _ a")
+    self.assertEqual(solution.get_guessed_word("marina",["m","a","a"]), "ma_ _ _ a")
+    self.assertEqual(solution.get_guessed_word("marina",["m","a","a","r","n","i"]), "marina")
+  def test_getavailableletters(self):
+    self.assertEqual(solution.get_available_letters(['m','a','r','i','n','a']), 'bcdefghjklopqstuvwxyz')
+    self.assertEqual(solution.get_available_letters(['m','a','r','i','2','1']), 'bcdefghjklnopqstuvwxyz')
+    self.assertEqual(solution.get_available_letters([]), 'abcdefghijklmnopqrstuvwxyz')
+  def test_validinput(self):
+   self.assertEqual(solution.valid_input('m', "m_ _ _ _ _ ", "5", 3, 3 ),(3, 'g', 2))
+   self.assertEqual(solution.valid_input('m', "m_ _ _ _ _ ", "m", 3, 3 ),(3, 'g', 2))
+   self.assertEqual(solution.valid_input('m', "m_ _ _ _ _ ", "#", 3, 0 ),(2, 'g', -1))
+   self.assertEqual(solution.valid_input('m', "m_ _ _ _ _ ", "m", 3, 0 ),(2, 'g', -1))
 
-#scenario 1 the list is empty
-secret_word="marina"
-letters_guessed=[]
-result=is_word_guessed(secret_word, letters_guessed)
-if result == False:
-  print("scenario1 test success")
-else:
-  print("scenario1 test fail")  
+  
 
 
-#scenario 2 list has some elements but not all letters in the word
-
-secret_word="marina"
-letters_guessed=["a","b","c"]
-result=is_word_guessed(secret_word, letters_guessed)
-if result == False:
-  print("scenario2 test success")
-else:
-  print("scenario2 test fail")  
-
-#scenario 3 list has all the letters in the word 
-secret_word="marina"
-letters_guessed=["a","r","i","m", "n"]
-result=is_word_guessed(secret_word, letters_guessed)
-if result == True:
-  print("scenario3 test success")
-else:
-  print("scenario3 test fail")  
-
-#scenario 4 list has all the letters in the word but some are capital letters
-secret_word="marina"
-letters_guessed=["a","r","i","m", "N"]
-result=is_word_guessed(secret_word, letters_guessed)
-if result == False:
-  print("scenario4 test success")
-else:
-  print("scenario4 test fail")  
-
+if __name__ == '__main__':
+  unittest.main()
+    
