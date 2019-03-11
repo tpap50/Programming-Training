@@ -1,7 +1,7 @@
 import unittest
 import sys
 sys.path.append("/Users/tompapas/Documents/Programming/Programming-Training/MIT6_0001F16/Assignments/Problem Set 2")
-import solution
+import print_messages
 
 class test_solution(unittest.TestCase):
   """docstring for ClassName"""
