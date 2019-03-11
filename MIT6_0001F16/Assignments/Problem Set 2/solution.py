@@ -18,6 +18,7 @@ Created on Wed Jan  2 18:14:53 2019
 # but you will have to know how to use the functions
 # (so be sure to read the docstrings!)
 import random
+import print_messages
  
 WORDLIST_FILENAME = "words.txt"
  
@@ -101,17 +102,24 @@ def get_available_letters(letters_guessed):
  
 #letters_guessed = ['e', 'i', 'k', 'p', 'r', 's']
 #print (get_available_letters(letters_guessed))
- 
 
 
+
+
+
+
+
  
-def valid_input(letters_guessed, word_guess, guess, number_guesses, number_warnings, c):
+def valid_guess(letters_guessed, word_guess, number_guesses, number_warnings):
     '''
     user has input an invalid guess, gu\
     inputs: letters guessed, word guess, guess, number of warnings, number or guesses
     returns a guess, number of warnings and number of guesses.
     '''
     #input letter already guessed and lose warning
+    guess = input("Please guess a letter: ")
+    c=guess.isalpha() 
+    while c ==False or guess in letters_guessed: 
     #------------------------------        
     if guess in letters_guessed and number_warnings>0:
       number_warnings=number_warnings-1          
@@ -160,29 +168,15 @@ def hangman(secret_word):
     letters_guessed =''
     word_guess = get_guessed_word(secret_word, letters_guessed)   
     available_letters = get_available_letters(letters_guessed)
-   
     while number_guesses>0:
-       ################### 
-       #Before each guess 
-       print("You have",number_warnings,"warnings remaining") 
-       #after each guess need update warnings, guesses, letters guessed and word guess
-       print("-----------------")        
-       print("You have",number_guesses,"guesses remaining")
-       #show the available letters to user      
-       available_letters = get_available_letters(letters_guessed)
-       print("Available letters", available_letters)
-       ##ask user to guess
-       guess = input("Please guess a letter: ")
-       c=guess.isalpha()
-       #######################
-       #check if guess valid  
-       while c ==False or guess in letters_guessed: 
-       #if not valid get a valid guess     
-           a=valid_input(letters_guessed, word_guess, guess, number_guesses, number_warnings, c)       
-           number_guesses=a[0]
-           guess=a[1]
-           number_warnings=a[2]
-           c=guess.isalpha() 
+      #print some messages before ask for guess
+      print_messages()  
+      ##get a valid guess
+      a=valid_input(letters_guessed, word_guess, number_guesses, number_warnings)       
+      number_guesses=a[0]
+      guess=a[1]
+      number_warnings=a[2]
+      c=guess.isalpha() 
        #######################
        #updates        
        letters_guessed = letters_guessed + guess   
