@@ -9,8 +9,6 @@ class test_print_messages(unittest.TestCase):
     self.assertEqual(print_messages.print_messages(2,2,"a"), None)
     self.assertEqual(print_messages.print_messages(2,2,""), None)
   
-
-
 if __name__ == '__main__':
   unittest.main()
     
