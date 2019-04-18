@@ -165,23 +165,6 @@ def hangman(secret_word):
       print_messages()  
       ##get a valid guess
       a=valid_input(letters_guessed, word_guess, number_guesses, number_warnings)       
-      number_guesses=a[0]
-      guess=a[1]
-      number_warnings=a[2]
-      c=guess.isalpha() 
-       #######################
-       #updates        
-       letters_guessed = letters_guessed + guess   
-       word_guess = get_guessed_word(secret_word, letters_guessed)   
-       #Display to user whether guess in secret word       
-       if guess in secret_word:
-           print("Good guess", word_guess)
-       elif guess in ("a","e","i","o","u"):
-           print("Bad guess", word_guess)
-           number_guesses = number_guesses -2
-       else:   
-           print("Bad guess", word_guess)
-           number_guesses = number_guesses -1
        ################################
        #check if player has won the game
        end = is_word_guessed(secret_word, letters_guessed)
