@@ -8,7 +8,7 @@ class test_print_messages(unittest.TestCase):
   def test_print_messages(self):
     self.assertEqual(print_messages.print_messages(2,2,"a"), None)
     self.assertEqual(print_messages.print_messages(2,2,""), None)
-  
+  3
 if __name__ == '__main__':
   unittest.main()
     
