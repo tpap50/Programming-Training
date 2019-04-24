@@ -3,6 +3,7 @@ import sys
 sys.path.append("/Users/tompapas/Documents/Programming/Programming-Training/MIT6_0001F16/Assignments/Problem Set 2")
 import print_messages
 import functions
+import valid_guess
 
 class test_print_messages(unittest.TestCase):
   """docstring for ClassName"""
@@ -23,6 +24,8 @@ class test_print_messages(unittest.TestCase):
     self.assertEqual(functions.get_available_letters(['m','a','r','i','n','a']), 'bcdefghjklopqstuvwxyz')
     self.assertEqual(functions.get_available_letters(['m','a','r','i','2','1']), 'bcdefghjklnopqstuvwxyz')
     self.assertEqual(functions.get_available_letters([]), 'abcdefghijklmnopqrstuvwxyz')
+  def test_validguess(self):
+    self.assertEqual  
 if __name__ == '__main__':
   unittest.main()
     
