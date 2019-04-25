@@ -8,8 +8,8 @@ import valid_guess
 class test_print_messages(unittest.TestCase):
   """docstring for ClassName"""
   def test_print_messages(self):
-    self.assertEqual(print_messages.print_messages(2,2,"a"), None)
-    self.assertEqual(print_messages.print_messages(2,2,""), None)
+    self.assertEqual(print_messages.print_messages(2,"a"), None)
+    self.assertEqual(print_messages.print_messages(2,""), None)
   def test_iswordguessed(self):
     self.assertEqual(functions.is_word_guessed("marina",[]), False)
     self.assertEqual(functions.is_word_guessed("marina",["a","b","c"]), False)
@@ -24,8 +24,6 @@ class test_print_messages(unittest.TestCase):
     self.assertEqual(functions.get_available_letters(['m','a','r','i','n','a']), 'bcdefghjklopqstuvwxyz')
     self.assertEqual(functions.get_available_letters(['m','a','r','i','2','1']), 'bcdefghjklnopqstuvwxyz')
     self.assertEqual(functions.get_available_letters([]), 'abcdefghijklmnopqrstuvwxyz')
-  def test_validguess(self):
-    self.assertEqual  
 if __name__ == '__main__':
   unittest.main()
     

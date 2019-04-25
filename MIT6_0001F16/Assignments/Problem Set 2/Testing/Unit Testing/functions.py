@@ -49,20 +49,20 @@ def get_available_letters(letters_guessed):
 #print (get_available_letters(letters_guessed))
 
 def updates(a):
-      number_guesses=a[0]
-      guess=a[1]
-      number_warnings=a[2]
-      c=guess.isalpha() 
-       #######################
-       #updates        
-       letters_guessed = letters_guessed + guess   
-       word_guess = get_guessed_word(secret_word, letters_guessed)   
-       #Display to user whether guess in secret word       
-       if guess in secret_word:
-           print("Good guess", word_guess)
-       elif guess in ("a","e","i","o","u"):
-           print("Bad guess", word_guess)
-           number_guesses = number_guesses -2
-       else:   
-           print("Bad guess", word_guess)
-           number_guesses = number_guesses -1
+    number_guesses=a[0]
+    guess=a[1]
+    number_warnings=a[2]
+    c=guess.isalpha() 
+    #######################
+    #updates        
+    letters_guessed = letters_guessed + guess   
+    word_guess = get_guessed_word(secret_word, letters_guessed)   
+    #Display to user whether guess in secret word       
+    if guess in secret_word:
+        print("Good guess", word_guess)
+    elif guess in ("a","e","i","o","u"):
+        print("Bad guess", word_guess)
+        number_guesses = number_guesses -2
+    else:   
+        print("Bad guess", word_guess)
+        number_guesses = number_guesses -1
