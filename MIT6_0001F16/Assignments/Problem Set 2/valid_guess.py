@@ -16,7 +16,7 @@ def valid_guess(letters_guessed, word_guess, number_guesses, number_warnings):
         number_warnings, "warnings left:",word_guess)
         #lose a warning          
       #input letter already guessed and no warnings left so lose a guess
-      elif guess in letters_guessed and number_warnings=0:
+      elif guess in letters_guessed and number_warnings==0:
         number_guesses = number_guesses - 1
         print("You have already guessed that letter before. You have didnt have any warnings left so you lose a guess:", word_guess)
       #guess not in the alphabet and have a warning left  
@@ -24,7 +24,7 @@ def valid_guess(letters_guessed, word_guess, number_guesses, number_warnings):
          number_warnings=number_warnings-1          
          print("Oops you lost a warning guess not in the alphabet. You have",
          number_warnings, "warnings left.", word_guess)
-      elif c == False and number_warnings=0:
+      elif c == False and number_warnings==0:
         number_guesses = number_guesses - 1
         print("Oops you lost a warning guess not in the alphabet. You have didnt have any warnings left so you lose a guess:", word_guess)
       print_messages(number_guesses,letters_guessed)            
