@@ -119,7 +119,7 @@ def hangman(secret_word):
     available_letters = get_available_letters(letters_guessed)
     while number_guesses>0:
       #print some messages before ask for guess
-      print_messages(number_warnings,number_guesses,letters_guessed)  
+      print_messages(number_guesses,letters_guessed)  
       ##get a valid guess
       a=valid_input(letters_guessed, word_guess, number_guesses, number_warnings)       
        ################################

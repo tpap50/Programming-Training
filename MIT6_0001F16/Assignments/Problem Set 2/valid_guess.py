@@ -1,3 +1,4 @@
+import print_messages
 
 def valid_guess(letters_guessed, word_guess, number_guesses, number_warnings):
     '''
@@ -9,7 +10,8 @@ def valid_guess(letters_guessed, word_guess, number_guesses, number_warnings):
     guess = input("Please guess a letter: ")
     c=guess.isalpha() 
     while c ==False or guess in letters_guessed: 
-    #------------------------------        
+    #------------------------------  
+    #update number of warnings or number of guesses      
       if guess in letters_guessed and number_warnings>0:
         number_warnings=number_warnings-1          
         print("You have already guessed that letter before. You have",
@@ -27,6 +29,8 @@ def valid_guess(letters_guessed, word_guess, number_guesses, number_warnings):
       elif c == False and number_warnings==0:
         number_guesses = number_guesses - 1
         print("Oops you lost a warning guess not in the alphabet. You have didnt have any warnings left so you lose a guess:", word_guess)
-      print_messages(number_guesses,letters_guessed)            
-      guess = input("Please guess a letter: ")    
+      #Ask for another guess
+      print_messages.print_messages(number_guesses,letters_guessed)            
+      guess = input("Please guess a letter: ") 
+      c=guess.isalpha()   
     return(number_guesses, guess, number_warnings)

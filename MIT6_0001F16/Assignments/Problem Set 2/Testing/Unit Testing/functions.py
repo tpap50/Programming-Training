@@ -1,4 +1,3 @@
-
 def is_word_guessed(secret_word, letters_guessed):
     '''
     secret_word: string, the word the user is guessing; assumes all letters are
@@ -49,10 +48,15 @@ def get_available_letters(letters_guessed):
 #print (get_available_letters(letters_guessed))
 
 def updates(a):
+  '''purpose: update number of guesses, check if letter is in secret word, give a message to the user if the letter in the word
+     and update and print the get guessed word and also available letters
+     input: is the output from valid_guess
+     returns: number of guesses, available letters and word guess
+  '''   
     number_guesses=a[0]
     guess=a[1]
-    number_warnings=a[2]
-    c=guess.isalpha() 
+    #number_warnings=a[2]
+    #c=guess.isalpha() 
     #######################
     #updates        
     letters_guessed = letters_guessed + guess   
@@ -66,3 +70,4 @@ def updates(a):
     else:   
         print("Bad guess", word_guess)
         number_guesses = number_guesses -1
+    return(number_guesses, letters_guessed, word_guess)
