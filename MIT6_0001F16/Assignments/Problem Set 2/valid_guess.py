@@ -7,6 +7,7 @@ def valid_guess(letters_guessed, word_guess, number_guesses, number_warnings):
     returns a guess, number of warnings and number of guesses.
     '''
     #input letter already guessed and lose warning
+    
     guess = input("Please guess a letter: ")
     c=guess.isalpha() 
     while c ==False or guess in letters_guessed: 
