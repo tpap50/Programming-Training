@@ -10,7 +10,6 @@
 # but you will have to know how to use the functions
 # (so be sure to read the docstrings!)
 import random
-import print_messages
 
 WORDLIST_FILENAME = "words.txt"
 
@@ -46,57 +45,6 @@ def choose_word(wordlist):
 
 # -----------------------------------
 
-def is_word_guessed(secret_word, letters_guessed):
-    '''
-    secret_word: string, the word the user is guessing; assumes all letters are
-      lowercase
-    letters_guessed: list (of letters), which letters have been guessed so far;
-      assumes that all letters are lowercase
-    returns: boolean, True if all the letters of secret_word are in letters_guessed;
-      False otherwise
-    '''
-    my_String = True   
-    for i in secret_word:
-        if i not in letters_guessed:
-            my_String = False
-    return(my_String)
-
-
-def get_guessed_word(secret_word, letters_guessed):
-    '''
-    secret_word: string, the word the user is guessing
-    letters_guessed: list (of letters), which letters have been guessed so far
-    returns: string, comprised of letters, underscores (_), and spaces that represents
-      which letters in secret_word have been guessed so far.
-    '''
-    my_String = ''
-    for x in secret_word:
-         if x in letters_guessed:
-              my_String += x
-         else:
-              my_String += '_ '
-    return my_String
-
-
-
-def get_available_letters(letters_guessed):
-    '''
-    letters_guessed: list (of letters), which letters have been guessed so far
-    returns: string (of letters), comprised of letters that represents which letters have not
-      yet been guessed.
-    '''
-    lowercase = 'abcdefghijklmnopqrstuvwxyz'
-    my_String = ''
-    for x in lowercase:
-       if x not in letters_guessed:
-          my_String += x
-    return my_String
-
-#letters_guessed = ['e', 'i', 'k', 'p', 'r', 's']
-#print (get_available_letters(letters_guessed))
-
-
-
 def hangman(secret_word):
     '''
     secret_word: string, the secret word to guess.
@@ -112,7 +60,7 @@ def hangman(secret_word):
     print("I'm thinking of a word that is", length, "letters long") 
     ##########################
     #initialise some variables 
-    number_guesses = 6
+    number_guesses = 2
     number_warnings=3
     letters_guessed =''
     word_guess = get_guessed_word(secret_word, letters_guessed)   
@@ -121,20 +69,24 @@ def hangman(secret_word):
       #print some messages before ask for guess
       print_messages(number_guesses,letters_guessed)  
       ##get a valid guess
-      a=valid_input(letters_guessed, word_guess, number_guesses, number_warnings)       
+      a=valid_guess(letters_guessed, word_guess, number_guesses, number_warnings)    
+      u=updates(number_guesses=a[0],guess=a[1],letters_guessed=letters_guessed, secret_word=secret_word)   
+      number_guesses=u[0]
+      letters_guessed=u[1]
        ################################
        #check if player has won the game
-       end = is_word_guessed(secret_word, letters_guessed)
-       if end == True:
+       #end = is_word_guessed(secret_word, letters_guessed)
+       #if end == True:
        #user won calculate winning score 
-           unique = list(set(secret_word))
-           unique_l = (len(unique))
-           score = number_guesses*unique_l
-           print("Congratulations, you won!. The word was", secret_word)
-           print("Your score was", score)          
-           break   
+           #unique = list(set(secret_word))
+           #unique_l = (len(unique))
+           #score = number_guesses*unique_l
+           #print("Congratulations, you won!. The word was", secret_word)
+           #print("Your score was", score)          
+           #break
+      #return(a)        
     #if run out of guesses tell user they lost and reveal word.       
-    print("Sorry you lost, the word was", secret_word)                     
+    #print("Sorry you lost, the word was", secret_word)                     
 
 #######################################################
 # Load the list of words into the variable wordlist
