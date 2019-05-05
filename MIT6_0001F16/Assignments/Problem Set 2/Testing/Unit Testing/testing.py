@@ -24,7 +24,11 @@ class test_print_messages(unittest.TestCase):
     self.assertEqual(functions.get_available_letters(['m','a','r','i','n','a']), 'bcdefghjklopqstuvwxyz')
     self.assertEqual(functions.get_available_letters(['m','a','r','i','2','1']), 'bcdefghjklnopqstuvwxyz')
     self.assertEqual(functions.get_available_letters([]), 'abcdefghijklmnopqrstuvwxyz')
-  def test_validguess(self):
+  def test_update(self): 
+    self.assertEqual(functions.updates(2, "a", ['n'], "marina"), (2,["n","a"]))
+    self.assertEqual(functions.updates(2, "c", ['b'], "marina"), (1,["b","c"]))
+    self.assertEqual(functions.updates(2, "q", ['b','f'], "marina"), (1,["b","f","q"]))
+  #def test_validguess(self):
     #valid guess - user enters "f"
     #self.assertEqual(valid_guess.valid_guess('abc', '_ _ _ _ ',3,2), (3, "f", 2)) 
     #letter already guess - user enters "a" followed by "f" have 2 warnings so lose one 
@@ -34,7 +38,7 @@ class test_print_messages(unittest.TestCase):
     #enters a number, user enters 5, followed by "f", has a warning remaining and loses it.
     #self.assertEqual(valid_guess.valid_guess('abc', '_ _ _ _ ',3,1), (3, "f", 0))
     #enters a number, user enters 10, followed by "h", didnt have a warning so loses a guess.
-    self.assertEqual(valid_guess.valid_guess('abc', '_ _ _ _ ',3,1), (2, "h", 0))
+    #self.assertEqual(valid_guess.valid_guess('abc', '_ _ _ _ ',3,1), (2, "h", 0))
 if __name__ == '__main__':
   unittest.main()
     

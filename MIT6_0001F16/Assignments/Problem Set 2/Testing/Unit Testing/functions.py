@@ -48,14 +48,13 @@ def get_available_letters(letters_guessed):
 #print (get_available_letters(letters_guessed))
 
 def updates(number_guesses,guess,letters_guessed, secret_word):
-  '''purpose: update number of guesses, check if letter is in secret word, give a message to the user if the letter in the word
-     and update and print the get guessed word and also available letters
-     input: is the output from valid_guess
-     returns: number of guesses, available letters and word guess
-  '''   
-    #######################
-    #updates        
-    letters_guessed = letters_guessed + guess   
+    '''purpose: update number of guesses, check if letter is in secret word, give a message to the user if the letter in the word
+       and update and print the get guessed word and also available letters
+       input: is the output from valid_guess
+       returns: number of guesses, available letters and word guess
+    '''      
+    guess_l = list(guess)
+    letters_guessed = letters_guessed + guess_l   
     word_guess = get_guessed_word(secret_word, letters_guessed)   
     #Display to user whether guess in secret word       
     if guess in secret_word:
