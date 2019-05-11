@@ -72,7 +72,9 @@ def hangman(secret_word):
       a=valid_guess(letters_guessed, word_guess, number_guesses, number_warnings)    
       u=updates(number_guesses=a[0],guess=a[1],letters_guessed=letters_guessed, secret_word=secret_word)   
       number_guesses=u[0]
+      number_warnings=a[2]
       letters_guessed=u[1]
+      word_guess=u[2]
        ################################
        #check if player has won the game
        #end = is_word_guessed(secret_word, letters_guessed)

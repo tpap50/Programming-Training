@@ -65,4 +65,4 @@ def updates(number_guesses,guess,letters_guessed, secret_word):
     else:   
         print("Bad guess", word_guess)
         number_guesses = number_guesses -1
-    return(number_guesses, letters_guessed)
+    return(number_guesses, letters_guessed, word_guess)
