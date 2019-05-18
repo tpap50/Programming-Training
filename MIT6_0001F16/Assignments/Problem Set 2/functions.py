@@ -56,30 +56,8 @@ def print_messages(number_guesses,letters_guessed):
     print("-----------------")        
     print("You have",number_guesses,"guesses remaining")
     #show the available letters to user      
-    available_letters = get_available_letters.get_available_letters(letters_guessed)
+    available_letters = get_available_letters(letters_guessed)
     print("Available letters", available_letters)
-
-
-
-def updates(number_guesses,guess,letters_guessed, secret_word):
-    '''purpose: update number of guesses, check if letter is in secret word, give a message to the user if the letter in the word
-       and update and print the get guessed word and also available letters
-       input: is the output from valid_guess
-       returns: number of guesses, available letters and word guess
-    '''      
-    guess_l = list(guess)
-    letters_guessed = letters_guessed + guess_l   
-    word_guess = get_guessed_word(secret_word, letters_guessed)   
-    #Display to user whether guess in secret word       
-    if guess in secret_word:
-        print("Good guess", word_guess)
-    elif guess in ("a","e","i","o","u"):
-        print("Bad guess", word_guess)
-        number_guesses = number_guesses -2
-    else:   
-        print("Bad guess", word_guess)
-        number_guesses = number_guesses -1
-    return(number_guesses, letters_guessed, word_guess)
 
 
 def valid_guess(letters_guessed, word_guess, number_guesses, number_warnings):
@@ -117,6 +95,28 @@ def valid_guess(letters_guessed, word_guess, number_guesses, number_warnings):
       guess = input("Please guess a letter: ") 
       c=guess.isalpha()   
     return(number_guesses, guess, number_warnings) 
+
+
+def updates(number_guesses,guess,letters_guessed, secret_word):
+    '''purpose: update number of guesses, check if letter is in secret word, give a message to the user if the letter in the word
+       and update and print the get guessed word and also available letters
+       input: is the output from valid_guess
+       returns: number of guesses, available letters and word guess
+    '''      
+    guess_l = list(guess)
+    letters_guessed = letters_guessed + guess_l   
+    word_guess = get_guessed_word(secret_word, letters_guessed)   
+    #Display to user whether guess in secret word       
+    if guess in secret_word:
+        print("Good guess", word_guess)
+    elif guess in ("a","e","i","o","u"):
+        print("Bad guess", word_guess)
+        number_guesses = number_guesses -2
+    else:   
+        print("Bad guess", word_guess)
+        number_guesses = number_guesses -1
+    return(number_guesses, letters_guessed, word_guess)
+
 
 
 
