@@ -102,7 +102,7 @@ def valid_guess(letters_guessed, word_guess, number_guesses, number_warnings):
       print_messages.print_messages(number_guesses,letters_guessed)            
       guess = input("Please guess a letter: ") 
       c=guess.isalpha()   
-    return(number_guesses, guess, number_warnings)
+    return(number_guesses, guess, number_warnings) 
 
 
 
@@ -137,20 +137,17 @@ def hangman(secret_word):
       number_warnings=a[2]
       letters_guessed=u[1]
       word_guess=u[2]
-       ################################
-       #check if player has won the game
-       #end = is_word_guessed(secret_word, letters_guessed)
-       #if end == True:
-       #user won calculate winning score 
-           #unique = list(set(secret_word))
-           #unique_l = (len(unique))
-           #score = number_guesses*unique_l
-           #print("Congratulations, you won!. The word was", secret_word)
-           #print("Your score was", score)          
-           #break
-      #return(a)        
+      #check if user won
+      end = is_word_guessed(secret_word, letters_guessed)
+      if end == True:
+           unique = list(set(secret_word))
+           unique_l = (len(unique))
+           score = number_guesses*unique_l
+           print("Congratulations, you won!. The word was", secret_word)
+           print("Your score was", score)          
+           break    
     #if run out of guesses tell user they lost and reveal word.       
-    #print("Sorry you lost, the word was", secret_word)                     
+    print("Sorry you lost, the word was", secret_word)                     
 
 #######################################################
 # Load the list of words into the variable wordlist

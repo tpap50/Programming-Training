@@ -42,3 +42,7 @@ class test_print_messages(unittest.TestCase):
 if __name__ == '__main__':
   unittest.main()
     
+
+#valid guess test cases
+#1 enter valid guess
+#2 enter a 
