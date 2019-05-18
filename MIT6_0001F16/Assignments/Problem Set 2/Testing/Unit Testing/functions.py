@@ -47,6 +47,20 @@ def get_available_letters(letters_guessed):
 #letters_guessed = ['e', 'i', 'k', 'p', 'r', 's']
 #print (get_available_letters(letters_guessed))
 
+
+def print_messages(number_guesses,letters_guessed):
+    '''
+    number of warnings, number of guesses and letters guessed so far.
+    returns: prints how many guesses and the letters available to select from.
+    '''
+    print("-----------------")        
+    print("You have",number_guesses,"guesses remaining")
+    #show the available letters to user      
+    available_letters = get_available_letters.get_available_letters(letters_guessed)
+    print("Available letters", available_letters)
+
+
+
 def updates(number_guesses,guess,letters_guessed, secret_word):
     '''purpose: update number of guesses, check if letter is in secret word, give a message to the user if the letter in the word
        and update and print the get guessed word and also available letters
@@ -161,33 +175,5 @@ def hangman(secret_word):
 #play hangman
 #hangman(secret_word)
 
-
-
-def load_words():
-    """
-    Returns a list of valid words. Words are strings of lowercase letters.
-   
-    Depending on the size of the word list, this function may
-    take a while to finish.
-    """
-    print("Loading word list from file...")
-    # inFile: file
-    inFile = open(WORDLIST_FILENAME, 'r')
-    # line: string
-    line = inFile.readline()
-    # wordlist: list of strings
-    wordlist = line.split()
-    print("  ", len(wordlist), "words loaded.")
-    return wordlist
-
-
-
-def choose_word(wordlist):
-    """
-    wordlist (list): list of words (strings)
-   
-    Returns a word from wordlist at random
-    """
-    return random.choice(wordlist)                                                      
 
 
