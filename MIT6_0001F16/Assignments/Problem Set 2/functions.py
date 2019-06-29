@@ -29,7 +29,7 @@ def get_guessed_word(secret_word, letters_guessed):
               my_String += '_ '
     return my_String
 
-
+  
 
 def get_available_letters(letters_guessed):
     '''
@@ -91,7 +91,7 @@ def valid_guess(letters_guessed, word_guess, number_guesses, number_warnings):
         number_guesses = number_guesses - 1
         print("Oops you lost a warning guess not in the alphabet. You have didnt have any warnings left so you lose a guess:", word_guess)
       #Ask for another guess
-      print_messages.print_messages(number_guesses,letters_guessed)            
+      print_messages(number_guesses,letters_guessed)            
       guess = input("Please guess a letter: ") 
       c=guess.isalpha()   
     return(number_guesses, guess, number_warnings) 
@@ -104,6 +104,7 @@ def updates(number_guesses,guess,letters_guessed, secret_word):
        returns: number of guesses, available letters and word guess
     '''      
     guess_l = list(guess)
+    #letters_guessed=list(letters_guessed)
     letters_guessed = letters_guessed + guess_l   
     word_guess = get_guessed_word(secret_word, letters_guessed)   
     #Display to user whether guess in secret word       
@@ -115,6 +116,7 @@ def updates(number_guesses,guess,letters_guessed, secret_word):
     else:   
         print("Bad guess", word_guess)
         number_guesses = number_guesses -1
+    #letters_guessed=''.join(letters_guessed)    
     return(number_guesses, letters_guessed, word_guess)
 
 
@@ -138,7 +140,7 @@ def hangman(secret_word):
     #initialise some variables 
     number_guesses = 2
     number_warnings=3
-    letters_guessed =''
+    letters_guessed =['']
     word_guess = get_guessed_word(secret_word, letters_guessed)   
     available_letters = get_available_letters(letters_guessed)
     while number_guesses>0:
@@ -162,7 +164,7 @@ def hangman(secret_word):
            break    
     #if run out of guesses tell user they lost and reveal word.       
     print("Sorry you lost, the word was", secret_word)                     
-
+    return(letters_guessed, score, end)
 #######################################################
 # Load the list of words into the variable wordlist
 # so that it can be accessed from anywhere in the program
