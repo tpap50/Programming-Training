@@ -6,7 +6,17 @@ import sys
 sys.path.append("/Users/tompapas/Documents/Programming/Programming-Training/MIT6_0001F16/Assignments/Problem Set 2")
 import functions
 class test_update(unittest.TestCase):
-  
+  def test_print_messages(self):
+    self.assertEqual(print_messages.print_messages(2,"a"), None)
+    self.assertEqual(print_messages.print_messages(2,""), None)
+    self.assertEqual(functions.print_messages(2,"a"), None)
+    self.assertEqual(functions.print_messages(2,""), None)
+  def test_iswordguessed(self):
+    self.assertEqual(functions.is_word_guessed("marina",[]), False)
+    self.assertEqual(functions.is_word_guessed("marina",["a","b","c"]), False)
+  def test_getavailableletters(self):
+    self.assertEqual(functions.get_available_letters(['m','a','r','i','2','1']), 'bcdefghjklnopqstuvwxyz')
+    self.assertEqual(functions.get_available_letters([]), 'abcdefghijklmnopqrstuvwxyz') 
   def test_update(self):
       self.assertEqual(functions.updates(2, "a", ['n'], "marina"), (2,["n","a"],'_ a_ _ na'))
       self.assertEqual(functions.updates(2, "c", ['b'], "marina"), (1,["b","c"], '_ _ _ _ _ _ '))
