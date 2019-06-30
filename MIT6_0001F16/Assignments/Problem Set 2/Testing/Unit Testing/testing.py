@@ -7,8 +7,8 @@ sys.path.append("/Users/tompapas/Documents/Programming/Programming-Training/MIT6
 import functions
 class test_update(unittest.TestCase):
   def test_print_messages(self):
-    self.assertEqual(print_messages.print_messages(2,"a"), None)
-    self.assertEqual(print_messages.print_messages(2,""), None)
+    self.assertEqual(functions.print_messages(2,"a"), None)
+    self.assertEqual(functions.print_messages(2,""), None)
     self.assertEqual(functions.print_messages(2,"a"), None)
     self.assertEqual(functions.print_messages(2,""), None)
   def test_iswordguessed(self):
