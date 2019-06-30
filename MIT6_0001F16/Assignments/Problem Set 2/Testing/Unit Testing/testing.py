@@ -25,10 +25,15 @@ class test_update(unittest.TestCase):
       #valid guess - user enters "f"
     #self.assertEqual(valid_guess.valid_guess('abc', '_ _ _ _ ',3,2), (3, "f", 2)) 
   def test_validguess(self):
-      with patch('builtins.input', return_value="f"):
+  #guess a letter not guessed so far  
+    with patch('builtins.input', return_value="f"):
         self.assertEqual(functions.valid_guess('abc', '_ _ _ _ ',3,2), (3, "f", 2))  
-      with patch('builtins.input', side_effect=("a","f")):
+  #guess a letter already guessed followed by one not guessed so far   
+    with patch('builtins.input', side_effect=("a","f")):
         self.assertEqual(functions.valid_guess('abc','_ _ _ _',3,2), (3,"f",1))
+   #guess a letter already guessed followed by one not guessed so far - reduce the number of warnings to zero and lose a guess   
+    with patch('builtins.input', side_effect=("a","b","c","f")):
+        self.assertEqual(functions.valid_guess('abc','_ _ _ _',3,2), (2,"f",0))
     #self.assertEqual(valid_guess.valid_guess('abc', '_ _ _ _ ',3,2), (3, "f", 1))
     #letter already guess and there are no warnings, user enters "a", followed by "f", lose a guess.
 if __name__ == '__main__':
