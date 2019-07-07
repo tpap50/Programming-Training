@@ -21,6 +21,12 @@ class test_update(unittest.TestCase):
       self.assertEqual(functions.updates(2, "a", ['n'], "marina"), (2,["n","a"],'_ a_ _ na'))
       self.assertEqual(functions.updates(2, "c", ['b'], "marina"), (1,["b","c"], '_ _ _ _ _ _ '))
       self.assertEqual(functions.updates(2, "q", ['b','f'], "marina"), (1,["b","f","q"], '_ _ _ _ _ _ '))
+      #guess in secret word 
+      self.assertEqual(functions.updates(2, "a", ['n'], "marina"), (2,["n","a"],'_ a_ _ na'))
+      #guess is a vowel not in secret word
+      self.assertEqual(functions.updates(2, "u", ['b'], "marina"), (0,["b","u"], '_ _ _ _ _ _ '))
+      #guess not in secret word and not a vowel
+      self.assertEqual(functions.updates(2, "q", ['b','f'], "marina"), (1,["b","f","q"], '_ _ _ _ _ _ '))
     #def test_validguess(self):
       #valid guess - user enters "f"
     #self.assertEqual(valid_guess.valid_guess('abc', '_ _ _ _ ',3,2), (3, "f", 2)) 
@@ -28,24 +34,41 @@ class test_update(unittest.TestCase):
   #guess a letter not guessed so far  
     with patch('builtins.input', return_value="f"):
         self.assertEqual(functions.valid_guess('abc', '_ _ _ _ ',3,2), (3, "f", 2))  
-  #guess a letter already guessed followed by one not guessed so far   
+  #guess a letter already guessed followed by one not guessed so far with number of warnings is greater than zero 
     with patch('builtins.input', side_effect=("a","f")):
         self.assertEqual(functions.valid_guess('abc','_ _ _ _',3,2), (3,"f",1))
    #guess a letter already guessed followed by one not guessed so far - reduce the number of warnings to zero and lose a guess   
     with patch('builtins.input', side_effect=("a","b","c","f")):
         self.assertEqual(functions.valid_guess('abc','_ _ _ _',3,2), (2,"f",0))
-    #guess a letter already guessed followed by one not guessed so far - reduce the number of warnings to zero and lose all guesss   
-    with patch('builtins.input', side_effect=("a","b","c","b","c","f")):
-        self.assertEqual(functions.valid_guess('abc','_ _ _ _',3,2), (0,"f",0))
-     #guess a letter already guessed followed by two  numbers and finally a valid guessir - reduce the number of warnings to zero   
-    with patch('builtins.input', side_effect=("a","b","1","2","f")):
+    #guess a letter already guessed followed by one not guessed so far - reduce the number of warnings to zero and guesses to one   
+    with patch('builtins.input', side_effect=("a","b","c","b","f")):
         self.assertEqual(functions.valid_guess('abc','_ _ _ _',3,2), (1,"f",0))
-    #self.assertEqual(valid_guess.valid_guess('abc', '_ _ _ _ ',3,2), (3, "f", 1))
+     #guess a letter already guessed followed by one not guessed so far - reduce the number of warnings to zero and lose all guesss   
+    with patch('builtins.input', side_effect=("a","b","c","b","c")):
+        self.assertEqual(functions.valid_guess('abc','_ _ _ _',3,2), (0,"",0))
+     #guess a letter already guessed followed by two  numbers and finally a valid guessir - reduce the number of warnings to zero   
+#    with patch('builtins.input', side_effect=("a","b","1","2","f")):
+#        self.assertEqual(functions.valid_guess('abc','_ _ _ _',3,2), (1,"f",0))
+    ##guess a letter already guessed followed by two  numbers and finally a valid guessir - reduce the number of guessess to zero   
+#    with patch('builtins.input', side_effect=("a","b","1","2","3","f")):
+ #       self.assertEqual(functions.valid_guess('abc','_ _ _ _',3,2), (0,"f",0))
+#guess a letter already guessed followed by two  numbers and finally a valid guessir - reduce the number of guess to zero and return null   
+#    with patch('builtins.input', side_effect=("a","b","1","2","3","4")):
+#        self.assertEqual(functions.valid_guess('abc','_ _ _ _',3,2), (0,"",0))
+    #s
+    #sself.assertEqual(valid_guess.valid_guess('abc', '_ _ _ _ ',3,2), (3, "f", 1))
     #letter already guess and there are no warnings, user enters "a", followed by "f", lose a guess.
   def test_hangman(self):
-  #guess a letter not guessed so far  
+  #guess the secred word with all correct guesses  
     with patch('builtins.input', side_effect=("t","o","m")):
         self.assertEqual(functions.hangman("tom"), (["","t","o","m"],6,True))  
- 
+   #guess the secred word with an incorrect guess   
+#    with patch('builtins.input', side_effect=("t","u", "o","m")):
+ #       self.assertEqual(functions.hangman("tom"), (["","t","u","o","m"],3,True))  
+   #guess the secred word with an incorrect guess and an invalid guess  
+#    with patch('builtins.input', side_effect=("t","u", "o","t","m")):
+  #      self.assertEqual(functions.hangman("tom"), (["","t","u","o","m"],0,True))  
+ #
+
 if __name__ == '__main__':
   unittest.main()

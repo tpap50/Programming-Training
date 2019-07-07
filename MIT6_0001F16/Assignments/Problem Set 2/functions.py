@@ -92,6 +92,10 @@ def valid_guess(letters_guessed, word_guess, number_guesses, number_warnings):
         print("Oops you lost a warning guess not in the alphabet. You have didnt have any warnings left so you lose a guess:", word_guess)
       #Ask for another guess
       print_messages(number_guesses,letters_guessed)            
+      #if no more guesses set the guess to null and break, otherwise ask for another guess
+      if number_guesses==0:
+          guess=''
+          break 
       guess = input("Please guess a letter: ") 
       c=guess.isalpha()   
     return(number_guesses, guess, number_warnings) 
