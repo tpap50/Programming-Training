@@ -142,7 +142,7 @@ def hangman(secret_word):
     print("I'm thinking of a word that is", length, "letters long") 
     ##########################
     #initialise some variables 
-    number_guesses = 2
+    number_guesses = 6
     number_warnings=3
     letters_guessed =['']
     word_guess = get_guessed_word(secret_word, letters_guessed)   
@@ -165,10 +165,10 @@ def hangman(secret_word):
            score = number_guesses*unique_l
            print("Congratulations, you won!. The word was", secret_word)
            print("Your score was", score)          
-           break    
+           return(letters_guessed,score,end)    
     #if run out of guesses tell user they lost and reveal word.       
     print("Sorry you lost, the word was", secret_word)                     
-    return(letters_guessed, score, end)
+    return(letters_guessed, end)
 #######################################################
 # Load the list of words into the variable wordlist
 # so that it can be accessed from anywhere in the program
