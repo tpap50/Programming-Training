@@ -3,16 +3,17 @@ SCRABBLE_LETTER_VALUES = {
 }
 
 def get_word_score(word,n):
+   word=str(word)
    word=word.lower()
    score=0
-   for i in word:
-	 score_n=SCRABBLE_LETTER_VALUES[i]
-	 score=score+score_n
-   length=len(word)
-   comp2=7*length-(3*(n-length))
-   comf=max(comp2,1)
-   score_f=score*comf
-   return(score_f)
+#   for i in word:
+#	 score_n=SCRABBLE_LETTER_VALUES[i]
+#	 score=score+score_n
+#   length=len(word)
+#   comp2=7*length-(3*(n-length))
+#   comf=max(comp2,1)
+#   score_f=score*comf
+#   return(score_f)
 
 
 
