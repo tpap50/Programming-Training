@@ -14,7 +14,9 @@ class test_update(unittest.TestCase):
   def testget_word_score(self):
     for (word, n) in words.keys():
     	score=words[(word,n)]
-        self.assertEqual(functions_play.get_word_score((word,n), score))
+        print((word,n))
+        print(score)
+        self.assertEqual(functions_play.get_word_score(word,n), score)
 
 if __name__ == '__main__':
   unittest.main()
