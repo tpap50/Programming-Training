@@ -91,13 +91,24 @@ def get_word_score(word, n):
     n: int >= 0
     returns: int >= 0
     """
-    
-    pass  # TO DO... Remove this line when you implement this function
+    word=str(word)
+    word=word.lower()
+    score=0
+    for i in word:
+	 score_n=SCRABBLE_LETTER_VALUES[i]
+	 score=score+score_n
+    length=len(word)
+    comp2=7*length-(3*(n-length))
+    comf=max(comp2,1)
+    score_f=score*comf
+    return(score_f)
+
+
 
 #
 # Make sure you understand how this function works and what it does!
 #
-def display_hand(hand):
+#def display_hand(hand):
     """
     Displays the letters currently in the hand.
 
@@ -110,10 +121,10 @@ def display_hand(hand):
     hand: dictionary (string -> int)
     """
     
-    for letter in hand.keys():
-        for j in range(hand[letter]):
-             print(letter, end=' ')      # print all on the same line
-    print()                              # print an empty line
+ #   for letter in hand.keys():
+#        for j in range(hand[letter]):
+ #            print(letter, end=' ')      # print all on the same line
+ #   print()                              # print an empty line
 
 #
 # Make sure you understand how this function works and what it does!
