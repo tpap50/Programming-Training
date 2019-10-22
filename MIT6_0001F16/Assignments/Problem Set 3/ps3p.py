@@ -78,141 +78,148 @@ def get_word_score(word, n):
 
 	The score for a word is the product of two components:
 
-		The first component is the sum of the points for letters in the word.
-		The second component is the larger of:
-		    1, or
-		    7*wordlen - 3*(n-wordlen), where wordlen is the length of the word
-		    and n is the hand length when the word was played
+	The first component is the sum of the points for letters in the word.
+	The second component is the larger of:
+            1, or
+            7*wordlen - 3*(n-wordlen), where wordlen is the length of the word
+            and n is the hand length when the word was played
 
-		Letters are scored as in Scrabble; A is worth 1, B is
-		worth 3, C is worth 3, D is worth 2, E is worth 1, and so on.
+	Letters are scored as in Scrabble; A is worth 1, B is
+	worth 3, C is worth 3, D is worth 2, E is worth 1, and so on.
 
-	    word: string
-	    n: int >= 0
-	    returns: int >= 0
-	    """
-    word=str(word)
-    word=word.lower()
-    score=0
-    for i in word:
-        score_n=SCRABBLE_LETTER_VALUES[i]
-        score=score+score_n
-        length=len(word)
-        comp2=7*length-(3*(n-length))
-        comf=max(comp2,1)
-        score_f=score*comf
-    return(score_f)
+    word: string
+    n: int >= 0
+    returns: int >= 0
+    """
+    
+    pass  # TO DO... Remove this line when you implement this function
 
+#
+# Make sure you understand how this function works and what it does!
+#
+def display_hand(hand):
+    """
+    Displays the letters currently in the hand.
 
+    For example:
+       display_hand({'a':1, 'x':2, 'l':3, 'e':1})
+    Should print out something like:
+       a x x l l l e
+    The order of the letters is unimportant.
 
-	#
-	# Make sure you understand how this function works and what it does!
-	#
+    hand: dictionary (string -> int)
+    """
+    
+    for letter in hand.keys():
+        for j in range(hand[letter]):
+             print(letter, end=' ')      # print all on the same line
+    print()                              # print an empty line
 
+#
+# Make sure you understand how this function works and what it does!
+# You will need to modify this for Problem #4.
+#
 def deal_hand(n):
-	    """
-	    Returns a random hand containing n lowercase letters.
-	    ceil(n/3) letters in the hand should be VOWELS (note,
-	    ceil(n/3) means the smallest integer not less than n/3).
+    """
+    Returns a random hand containing n lowercase letters.
+    ceil(n/3) letters in the hand should be VOWELS (note,
+    ceil(n/3) means the smallest integer not less than n/3).
 
-	    Hands are represented as dictionaries. The keys are
-	    letters and the values are the number of times the
-	    particular letter is repeated in that hand.
+    Hands are represented as dictionaries. The keys are
+    letters and the values are the number of times the
+    particular letter is repeated in that hand.
 
-	    n: int >= 0
-	    returns: dictionary (string -> int)
-	    """
-	    
-	    hand={}
-	    num_vowels = int(math.ceil(n / 3))
+    n: int >= 0
+    returns: dictionary (string -> int)
+    """
+    
+    hand={}
+    num_vowels = int(math.ceil(n / 3))
 
-	    for i in range(num_vowels):
-		x = random.choice(VOWELS)
-		hand[x] = hand.get(x, 0) + 1
-	    
-	    for i in range(num_vowels, n):    
-		x = random.choice(CONSONANTS)
-		hand[x] = hand.get(x, 0) + 1
-	    
-	    return hand
+    for i in range(num_vowels):
+        x = random.choice(VOWELS)
+        hand[x] = hand.get(x, 0) + 1
+    
+    for i in range(num_vowels, n):    
+        x = random.choice(CONSONANTS)
+        hand[x] = hand.get(x, 0) + 1
+    
+    return hand
 
-	#
-	# Problem #2: Update a hand by removing letters
-	#
-	def update_hand(hand, word):
-	    """
-	    Does NOT assume that hand contains every letter in word at least as
-	    many times as the letter appears in word. Letters in word that don't
-	    appear in hand should be ignored. Letters that appear in word more times
-	    than in hand should never result in a negative count; instead, set the
-	    count in the returned hand to 0 (or remove the letter from the
-	    dictionary, depending on how your code is structured). 
+#
+# Problem #2: Update a hand by removing letters
+#
+def update_hand(hand, word):
+    """
+    Does NOT assume that hand contains every letter in word at least as
+    many times as the letter appears in word. Letters in word that don't
+    appear in hand should be ignored. Letters that appear in word more times
+    than in hand should never result in a negative count; instead, set the
+    count in the returned hand to 0 (or remove the letter from the
+    dictionary, depending on how your code is structured). 
 
-	    Updates the hand: uses up the letters in the given word
-	    and returns the new hand, without those letters in it.
+    Updates the hand: uses up the letters in the given word
+    and returns the new hand, without those letters in it.
 
-	    Has no side effects: does not modify hand.
+    Has no side effects: does not modify hand.
 
-	    word: string
-	    hand: dictionary (string -> int)    
-	    returns: dictionary (string -> int)
-	    """
-           for i in range(len(word)):
-	      v=hand.get(word[i],0)
-              if v>0:
-                 hand[word[i]]=hand[word[i]]-1
-           return(hand) 	  
-        
-	#
-	# Problem #3: Test word validity
-	#
-	def is_valid_word(word, hand, word_list):
-	    """
-	    Returns True if word is in the word_list and is entirely
-	    composed of letters in the hand. Otherwise, returns False.
-	    Does not mutate hand or word_list.
-	   
-	    word: string
-	    hand: dictionary (string -> int)
-	    word_list: list of lowercase strings
-	    returns: boolean
-	    """
+    word: string
+    hand: dictionary (string -> int)    
+    returns: dictionary (string -> int)
+    """
 
-	    pass  # TO DO... Remove this line when you implement this function
+    pass  # TO DO... Remove this line when you implement this function
 
-	#
-	# Problem #5: Playing a hand
-	#
-	def calculate_handlen(hand):
-	    """ 
-	    Returns the length (number of letters) in the current hand.
-	    
-	    hand: dictionary (string-> int)
-	    returns: integer
-	    """
-	    
-	    pass  # TO DO... Remove this line when you implement this function
+#
+# Problem #3: Test word validity
+#
+def is_valid_word(word, hand, word_list):
+    """
+    Returns True if word is in the word_list and is entirely
+    composed of letters in the hand. Otherwise, returns False.
+    Does not mutate hand or word_list.
+   
+    word: string
+    hand: dictionary (string -> int)
+    word_list: list of lowercase strings
+    returns: boolean
+    """
 
-	def play_hand(hand, word_list):
+    pass  # TO DO... Remove this line when you implement this function
 
-	    """
-	    Allows the user to play the given hand, as follows:
+#
+# Problem #5: Playing a hand
+#
+def calculate_handlen(hand):
+    """ 
+    Returns the length (number of letters) in the current hand.
+    
+    hand: dictionary (string-> int)
+    returns: integer
+    """
+    
+    pass  # TO DO... Remove this line when you implement this function
 
-	    * The hand is displayed.
-	    
-	    * The user may input a word.
+def play_hand(hand, word_list):
 
-	    * When any word is entered (valid or invalid), it uses up letters
-	      from the hand.
+    """
+    Allows the user to play the given hand, as follows:
 
-	    * An invalid word is rejected, and a message is displayed asking
-	      the user to choose another word.
+    * The hand is displayed.
+    
+    * The user may input a word.
 
-	    * After every valid word: the score for that word is displayed,
-	      the remaining letters in the hand are displayed, and the user
-	      is asked to input another word.
+    * When any word is entered (valid or invalid), it uses up letters
+      from the hand.
 
-	    * The sum of the word scores is displayed when the hand finishes.
+    * An invalid word is rejected, and a message is displayed asking
+      the user to choose another word.
+
+    * After every valid word: the score for that word is displayed,
+      the remaining letters in the hand are displayed, and the user
+      is asked to input another word.
+
+    * The sum of the word scores is displayed when the hand finishes.
 
     * The hand finishes when there are no more unused letters.
       The user can also finish playing the hand by inputing two 
