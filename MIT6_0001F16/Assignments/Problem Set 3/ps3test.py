@@ -106,8 +106,8 @@ def get_word_score(word, n):
            comp2=7*length-(3*(n-length))
            comf=max(comp2,1)
     #    print(score*comf)
-           test=comf*score
-    return(score)
+           score_f=comf*score
+    return(score_f)
 
 
 #
