@@ -184,6 +184,7 @@ def update_hand(hand, word):
     returns: dictionary (string -> int)
     """
     handc=hand.copy()
+    word=word.lower()
     for i in word:
         s=handc.get(i,0)
         if s > 0:
