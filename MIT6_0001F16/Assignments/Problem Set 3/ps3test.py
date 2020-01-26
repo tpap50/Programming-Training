@@ -150,11 +150,14 @@ def deal_hand(n):
     """
     
     hand={}
-    num_vowels = int(math.ceil(n / 3))
+    num_vowels = int(math.ceil(n / 3)) 
 
-    for i in range(num_vowels):
+    for i in range(num_vowels - 1):
         x = random.choice(VOWELS)
         hand[x] = hand.get(x, 0) + 1
+    
+    z='*'
+    hand[z]=1
     
     for i in range(num_vowels, n):    
         x = random.choice(CONSONANTS)
@@ -207,19 +210,26 @@ def is_valid_word(word, hand, word_list):
     word_list: list of lowercase strings
     returns: boolean
     """
-    failure=True
+    success=True
     word=word.lower()
     hand1=hand.copy()
-    if word not in word_list:
-       failure=False
+    count=0
+    #check that word is in wordlist
+    for i in VOWELS:
+       word_n=word.replace('*',i)
+       if word_n in word_list:
+          count=count+1
+    if count==0:          
+       success=False
+    #check word comprised entirely of letters in the hand
     for i in word:
        w=hand1.get(i,0)
        if w==0:
-          failure=False
+          success=False
           break
        else:
           hand1[i]=hand[i]-1
-    return failure
+    return success
  
 
 #

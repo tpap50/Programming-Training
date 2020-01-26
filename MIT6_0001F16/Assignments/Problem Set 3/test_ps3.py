@@ -215,6 +215,7 @@ def test_wildcard(word_list):
         failure = True
 
     # test 3
+    #pdb.set_trace()
     hand = {'n': 1, 'h': 1, '*': 1, 'y': 1, 'd':1, 'w':1, 'e': 2}
     word = "h*ney"
 
@@ -251,14 +252,14 @@ def test_wildcard(word_list):
 word_list = load_words()
 print("----------------------------------------------------------------------")
 print("Testing get_word_score...")
-test_get_word_score()
+#test_get_word_score()
 print("----------------------------------------------------------------------")
 print("Testing update_hand...")
-test_update_hand()
+#test_update_hand()
 print("----------------------------------------------------------------------")
 print("Testing is_valid_word...")
-test_is_valid_word(word_list)
+#test_is_valid_word(word_list)
 print("----------------------------------------------------------------------")
 print("Testing wildcards...")
-#test_wildcard(word_list)
+test_wildcard(word_list)
 print("All done!")
