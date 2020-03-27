@@ -26,6 +26,19 @@ def test_get_word_score():
 # end of test_get_word_score
 
 
+def test_calculate_handlen(): 
+    """
+    Unit test for calculate_handlen
+    """
+    # test 1
+    handOrig = {'a':1, 'q':1, 'l':2, 'm':1, 'u':1, 'i':1}
+    expect_len=7
+    letters=calculate_handlen(handOrig)
+    if letters!=7:
+       print("wrong")
+       return
+    print("Success")
+
 def test_update_hand():
     """
     Unit test for update_hand
@@ -262,4 +275,8 @@ print("Testing is_valid_word...")
 print("----------------------------------------------------------------------")
 print("Testing wildcards...")
 test_wildcard(word_list)
+print("----------------------------------------------------------------------")
+print("Testing calculate_handlen...")
+test_calculate_handlen()
+print("----------------------------------------------------------------------")
 print("All done!")
