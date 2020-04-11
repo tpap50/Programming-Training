@@ -255,34 +255,34 @@ def calculate_handlen(hand):
 
 def play_hand(hand, word_list):
 
-	    """
-	    Allows the user to play the given hand, as follows:
+    display_hand(hand)     
+    """
+    Allows the user to play the given hand, as follows:
 
-	    * The hand is displayed.
+    * The hand is displayed.
 	    
-	    * The user may input a word.
+    * The user may input a word.
 
-	    * When any word is entered (valid or invalid), it uses up letters
-	      from the hand.
+    * When any word is entered (valid or invalid), it uses up letters
+    from the hand.
+    * An invalid word is rejected, and a message is displayed asking
+    the user to choose another word.
 
-	    * An invalid word is rejected, and a message is displayed asking
-	      the user to choose another word.
+    * After every valid word: the score for that word is displayed,
+    the remaining letters in the hand are displayed, and the user
+    is asked to input another word.
 
-	    * After every valid word: the score for that word is displayed,
-	      the remaining letters in the hand are displayed, and the user
-	      is asked to input another word.
+    * The sum of the word scores is displayed when the hand finishes.
 
-	    * The sum of the word scores is displayed when the hand finishes.
+    * The hand finishes when there are no more unused letters.
+    The user can also finish playing the hand by inputing two 
+    exclamation points (the string '!!') instead of a word.
 
-	    * The hand finishes when there are no more unused letters.
-	      The user can also finish playing the hand by inputing two 
-	      exclamation points (the string '!!') instead of a word.
-
-	      hand: dictionary (string -> int)
-	      word_list: list of lowercase strings
-	      returns: the total score for the hand
-	      
-	    """
+    hand: dictionary (string -> int)
+    word_list: list of lowercase strings
+    returns: the total score for the hand
+    
+    """
 	    
 	    # BEGIN PSEUDOCODE <-- Remove this comment when you implement this function
 	    # Keep track of the total score

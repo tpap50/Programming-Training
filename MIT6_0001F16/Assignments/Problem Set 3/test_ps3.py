@@ -96,7 +96,7 @@ def test_update_hand():
     expected_hand2 = {'h': 0, 'e': 0, 'l': 0, 'o': 0}
     if hand2 != expected_hand1 and hand2 != expected_hand2:
         print("FAILURE: test_update_hand('"+ word +"', " + str(handOrig) + ")")                
-        print("\tReturned: ", hand2, "\n\t-- but expected:", expected_hand1, "or", expected_hand2)
+  
         
         return # exit function
 
@@ -265,13 +265,13 @@ def test_wildcard(word_list):
 word_list = load_words()
 print("----------------------------------------------------------------------")
 print("Testing get_word_score...")
-#test_get_word_score()
+test_get_word_score()
 print("----------------------------------------------------------------------")
 print("Testing update_hand...")
-#test_update_hand()
+test_update_hand()
 print("----------------------------------------------------------------------")
 print("Testing is_valid_word...")
-#test_is_valid_word(word_list)
+test_is_valid_word(word_list)
 print("----------------------------------------------------------------------")
 print("Testing wildcards...")
 test_wildcard(word_list)
